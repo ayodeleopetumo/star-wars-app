@@ -9,12 +9,12 @@ import MoviesList from './components/MoviesList';
 
 const App: React.FC = () => {
   return (
-    <div className="container">
+    <div className='container'>
       <Header />
       <MoviesList />
       <Footer />
     </div>
   );
-}
+};
 
 export default App;

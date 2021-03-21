@@ -1,7 +1,7 @@
 import React from 'react';
 
 import './style.scss';
-import logo from '../../assets/images/logo-yellow-small.png'
+import logo from '../../assets/images/logo-yellow-small.png';
 
 const Header: React.FC = () => {
   return (
@@ -10,6 +10,6 @@ const Header: React.FC = () => {
       <h1 className='hedaer__title'>Movies</h1>
     </header>
   );
-}
+};
 
 export default Header;

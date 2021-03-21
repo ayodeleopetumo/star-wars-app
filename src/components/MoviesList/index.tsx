@@ -7,7 +7,7 @@ const MoviesList: React.FC = () => {
     <section className='movies-list'>
       <h3>Movies List</h3>
     </section>
-  )
-}
+  );
+};
 
 export default MoviesList;
