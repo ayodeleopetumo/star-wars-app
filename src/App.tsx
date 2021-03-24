@@ -5,13 +5,16 @@ import './App.css';
 // Components
 import Header from './components/Header';
 import Footer from './components/Footer';
-import MoviesList from './components/MoviesList';
+import MoviesList from './containers/MoviesList';
 
-const App: React.FC = () => {
+// Models
+import { Prop } from './models';
+
+const App: React.FC<Prop> = () => {
   return (
     <div className='container'>
       <Header />
-      <MoviesList />
+      <MoviesList moviesList={[]} />
       <Footer />
     </div>
   );
