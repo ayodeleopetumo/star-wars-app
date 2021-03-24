@@ -1,0 +1,79 @@
+.movies-list {
+  &__menu {
+    width: 100%;
+    max-width: 750px;
+    margin-bottom: 100px;
+    position: relative;
+  }
+
+  &__select {
+    width: 100%;
+    height: 50px;
+    font-size: 100%;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 0;
+    background-color: var(--yellow);
+    border: none;
+    border-bottom: 2px solid var(--yellow);
+    color: var(--black);
+    appearance: none;
+    padding: 10px;
+    padding-right: 38px;
+    transition: color 0.3s ease, background-color 0.3s ease, border-bottom-color 0.3s ease;
+
+    &:disabled {
+      cursor: not-allowed;
+    }
+
+    &:not(&[disabled]):hover {
+      color: #fff;
+      background-color: var(--black);
+    }
+
+    &:hover ~ .movies-list__icon {
+      border-color: #dcdcdc;
+    }
+
+    &:hover ~ .movies-list__icon svg.icon {
+      fill: #fff;
+    }
+  }
+
+  &__icon,
+  &__spinner {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    width: 40px;
+    height: 40px;
+  }
+
+  &__spinner {
+    border-radius: 50%;
+    border: 3px solid rgba(0, 0, 0, 0.5);
+    border-top-color: transparent;
+    animation: rotation 0.5s infinite linear;
+  }
+
+  &__icon {
+    pointer-events: none;
+    border: 2px solid var(--black);
+    padding-left: 5px;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+  }
+
+  &__icon svg.icon {
+    transition: fill 0.3s ease;
+    fill: var(--black);
+  }
+}
+
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+}
