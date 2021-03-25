@@ -1,12 +1,25 @@
 .movies-list {
   width: 100%;
-  height: 100%;
+  max-width: 750px;
   padding: 30px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 
   &__empty-img {
     width: 100%;
+  }
+}
+
+.spinner {
+  border-radius: 50%;
+  border: 3px solid rgba(0, 0, 0, 0.5);
+  border-top-color: transparent;
+  animation: rotation 0.5s infinite linear;
+}
+
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
   }
 }

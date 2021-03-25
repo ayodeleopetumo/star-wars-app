@@ -1,0 +1,62 @@
+.movies-list {
+  &__table {
+    border-collapse: collapse;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    min-width: 100%;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+  }
+
+  &__table-header-row {
+    background-color: #00203f;
+    color: #ffffff;
+    text-align: left;
+    cursor: pointer;
+  }
+
+  &__table-heading,
+  &__table-content {
+    padding: 12px 15px;
+  }
+
+  &__table-row {
+    border-bottom: 1px solid #fff;
+  }
+
+  &__table-row:nth-of-type(even) {
+    color: var(--main);
+    background-color: var(--complement);
+  }
+
+  &__table-row:last-of-type {
+    border-bottom: 2px solid #00203f;
+  }
+
+  &__table-heading.active-heading {
+    font-weight: bold;
+    color: #009879;
+  }
+
+  &__opening-crawl {
+    text-align: center;
+  }
+
+  &__opening-crawl-text {
+    height: 150px;
+    white-space: pre;
+    text-align: center;
+  }
+
+  &__gender-filter {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  &__gender-filter-select {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    width: 200px;
+  }
+}
