@@ -9,8 +9,8 @@ const MoviesSelection: React.FC<Prop> = ({ moviesList, fetchMovie, isLoading, mc
   const fetchSelectedMovie = (movieId: number) => {
     fetchMovie!(movieId);
     isLoading!(true);
-    mc!({movie: {}, characters: []});
-  }
+    mc!({ movie: {}, characters: [] });
+  };
 
   return (
     <div className='movies-list__menu'>

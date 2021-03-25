@@ -1,6 +1,6 @@
-import React from 'react'
+import React from 'react';
 
-import './style.scss'
+import './style.scss';
 
 const MovieSpinner: React.FC = () => {
   return (
@@ -8,7 +8,7 @@ const MovieSpinner: React.FC = () => {
       <span className='movies-list__loader-icon spinner'></span>
       <p className='movies-list__loader-text'>Fetching movie information, please wait...</p>
     </div>
-  )
-}
+  );
+};
 
-export default MovieSpinner
+export default MovieSpinner;

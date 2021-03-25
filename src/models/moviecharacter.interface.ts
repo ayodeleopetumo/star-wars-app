@@ -1,6 +1,6 @@
-import { Film, People } from "./index";
+import { Film, People } from './index';
 
 export interface MovieCharacter {
   movie: Film;
-  characters: People[]
+  characters: People[];
 }

@@ -17,23 +17,31 @@ import './style.scss';
 const MoviesList: React.FC<Prop> = () => {
   const [loading, setLoading] = useState(false);
   const [movies, setMovies] = useState<Film[]>([]);
-  const [movieAndCharacters, setMovieAndCharacters] = useState<MovieCharacter>({movie: {}, characters: []});
+  const [movieAndCharacters, setMovieAndCharacters] = useState<MovieCharacter>({ movie: {}, characters: [] });
 
   useEffect(() => {
-    fetchMovies().then(results => setMovies(results)).catch(e => alert(e));
+    fetchMovies()
+      .then(results => setMovies(results))
+      .catch(e => alert(e));
   }, []);
 
-  const handleFetchMovie = (id: number) => fetchMovieAndCharacters(id).then(result => {
-    setMovieAndCharacters(result)
-    setLoading(false);
-  });
+  const handleFetchMovie = (id: number) =>
+    fetchMovieAndCharacters(id).then(result => {
+      setMovieAndCharacters(result);
+      setLoading(false);
+    });
 
   return (
     <section className='movies-list'>
-      <MoviesSelection mc={ setMovieAndCharacters } isLoading={ setLoading } fetchMovie={ handleFetchMovie } moviesList={ movies } />
-      { !loading && movieAndCharacters.movie.episode_id && <Table movieCharacterInfo={ movieAndCharacters } /> }
-      { !loading && !movieAndCharacters.movie.episode_id && <Default /> }
-      { loading && !movieAndCharacters.movie.episode_id && <MovieSpinner />}
+      <MoviesSelection
+        mc={setMovieAndCharacters}
+        isLoading={setLoading}
+        fetchMovie={handleFetchMovie}
+        moviesList={movies}
+      />
+      {!loading && movieAndCharacters.movie.episode_id && <Table movieCharacterInfo={movieAndCharacters} />}
+      {!loading && !movieAndCharacters.movie.episode_id && <Default />}
+      {loading && !movieAndCharacters.movie.episode_id && <MovieSpinner />}
     </section>
   );
 };

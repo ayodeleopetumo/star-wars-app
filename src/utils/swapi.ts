@@ -35,24 +35,23 @@ export const fetchMovieAndCharacters = async (id: number): Promise<MovieCharacte
   } catch (error) {
     throw dumpError(error, 'Error while retrieving selected film');
   }
-}
+};
 
 export const fetchCharacters = async (characters: string[]): Promise<People[]> => {
   try {
     const response = characters.map(character => fetch(character));
-    const people: People[] =
-      await Promise
-              .all(response.map(res => res.then(r => r.json())))
-              .then(response => response.map(e => ({ name: e.name, gender: e.gender, height: e.height })));
+    const people: People[] = await Promise.all(response.map(res => res.then(r => r.json()))).then(response =>
+      response.map(e => ({ name: e.name, gender: e.gender, height: e.height }))
+    );
     dump('Characters', people);
 
     return people;
   } catch (error) {
     throw dumpError(error, 'Error while retrieving character list');
   }
-}
+};
 
 const dumpError = (error: Error, msg: string) => {
   dump('Error', error);
   return new Error(msg);
-}
+};
