@@ -40,7 +40,9 @@ const MoviesList: React.FC<Prop> = () => {
         fetchMovie={handleFetchMovie}
         moviesList={movies}
       />
-      {!loading && movieAndCharacters.movie.episode_id && <Table filterTableData={ setfilterText } filterText={ filterText } movieCharacterInfo={movieAndCharacters} />}
+      {!loading && movieAndCharacters.movie.episode_id && (
+        <Table filterTableData={setfilterText} filterText={filterText} movieCharacterInfo={movieAndCharacters} />
+      )}
       {!loading && !movieAndCharacters.movie.episode_id && <Default />}
       {loading && !movieAndCharacters.movie.episode_id && <MovieSpinner />}
     </section>

@@ -17,7 +17,7 @@ const Table: React.FC<Prop> = ({ movieCharacterInfo, filterTableData, filterText
     if (filterText === 'all') return character;
     if (filterText === 'none') return character.gender.includes('n');
 
-    return character.gender === filterText
+    return character.gender === filterText;
   });
   const movieInfo = movieCharacterInfo?.movie!;
 
@@ -39,7 +39,6 @@ const Table: React.FC<Prop> = ({ movieCharacterInfo, filterTableData, filterText
 
     return `${heightInCentimeters} cm (${heightInFeet}ft/${finalInches}in)`;
   };
-
 
   return (
     <div className='movie-list__movie-character-info'>
