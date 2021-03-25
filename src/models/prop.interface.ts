@@ -7,4 +7,6 @@ export interface Prop {
   isLoading?: Function;
   mc?: Function;
   movieCharacterInfo?: MovieCharacter;
+  filterTableData?: Function,
+  filterText?: string;
 }

@@ -5,7 +5,7 @@ import { People, Prop } from '../../models';
 
 import './style.scss';
 
-const Table: React.FC<Prop> = ({ movieCharacterInfo }) => {
+const Table: React.FC<Prop> = ({ movieCharacterInfo, filterTableData, filterText }) => {
   const selectGenderConstants = [
     { value: 'all', label: 'All' },
     { value: 'male', label: 'Male' },
@@ -13,7 +13,12 @@ const Table: React.FC<Prop> = ({ movieCharacterInfo }) => {
     { value: 'hermaphrodite', label: 'Hermaphrodite' },
     { value: 'none', label: 'Non Human' }
   ];
-  const characters = movieCharacterInfo?.characters!;
+  const characters = movieCharacterInfo?.characters!.filter(character => {
+    if (filterText === 'all') return character;
+    if (filterText === 'none') return character.gender.includes('n');
+
+    return character.gender === filterText
+  });
   const movieInfo = movieCharacterInfo?.movie!;
 
   const createMarkup = () => {
@@ -22,7 +27,8 @@ const Table: React.FC<Prop> = ({ movieCharacterInfo }) => {
     };
   };
 
-  const getCharacterCount = (characters: People[]) => characters.length;
+  const genderFilter = (gender: string) => filterTableData!(gender);
+  const getCharacterCount = (characters: People[]): number => characters.length;
   const getTotalHieght = (characters: People[]): string => {
     const heightInCentimeters = characters
       .filter(character => !isNaN(+character.height))
@@ -34,12 +40,13 @@ const Table: React.FC<Prop> = ({ movieCharacterInfo }) => {
     return `${heightInCentimeters} cm (${heightInFeet}ft/${finalInches}in)`;
   };
 
+
   return (
     <div className='movie-list__movie-character-info'>
       <div dangerouslySetInnerHTML={createMarkup()} className='movies-list__opening-crawl'></div>
 
       <div className='movies-list__gender-filter'>
-        <select className='movies-list__gender-filter-select' onChange={evt => console.log(evt.currentTarget.value)}>
+        <select className='movies-list__gender-filter-select' onChange={evt => genderFilter(evt.currentTarget.value)}>
           {selectGenderConstants.map((gender, index) => (
             <option key={index} value={gender.value}>
               {gender.label}
@@ -57,7 +64,7 @@ const Table: React.FC<Prop> = ({ movieCharacterInfo }) => {
           </tr>
         </thead>
         <tbody>
-          {movieCharacterInfo?.characters?.map((character, index) => (
+          {characters?.map((character, index) => (
             <tr className='movies-list__table-row' key={index}>
               <td className='movies-list__table-content'>{character.name}</td>
               <td className='movies-list__table-content'>{character.gender}</td>
@@ -66,11 +73,11 @@ const Table: React.FC<Prop> = ({ movieCharacterInfo }) => {
           ))}
           <tr className='movies-list__table-row'>
             <td className='movies-list__table-content'>
-              <strong>Total Characters: {getCharacterCount(characters)}</strong>
+              <strong>Total Characters: {getCharacterCount(characters!)}</strong>
             </td>
             <td></td>
             <td className='movies-list__table-content'>
-              <strong>{getTotalHieght(characters)}</strong>
+              <strong>{getTotalHieght(characters!)}</strong>
             </td>
           </tr>
         </tbody>
