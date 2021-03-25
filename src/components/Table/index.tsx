@@ -1,7 +1,7 @@
 import React from 'react';
 
 // Models
-import { Film, People, Prop } from '../../models';
+import { People, Prop } from '../../models';
 
 import './style.scss';
 
