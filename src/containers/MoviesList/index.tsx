@@ -1,31 +1,47 @@
 import React, { useEffect, useState } from 'react';
 
 // Components
+import Table from '../../components/Table';
+import Default from '../../components/Default';
+import MovieSpinner from '../../components/MovieSpinner';
 import MoviesSelection from '../../components/MoviesSelect';
 
 // Model
-import { Film, Prop } from '../../models';
+import { Film, Prop, MovieCharacter } from '../../models';
 
 // Utils
-import { fetchMovies } from '../../utils/swapi';
+import { fetchMovies, fetchMovieAndCharacters } from '../../utils/swapi';
 
 import './style.scss';
-import logo from '../../assets/images/logo-white.png';
 
-const MoviesList: React.FC<Prop> = ({ moviesList }) => {
+const MoviesList: React.FC<Prop> = () => {
+  const [loading, setLoading] = useState(false);
   const [movies, setMovies] = useState<Film[]>([]);
+  const [movieAndCharacters, setMovieAndCharacters] = useState<MovieCharacter>({ movie: {}, characters: [] });
 
   useEffect(() => {
-    fetchMovies().then(results => setMovies(results));
+    fetchMovies()
+      .then(results => setMovies(results))
+      .catch(e => alert(e));
   }, []);
+
+  const handleFetchMovie = (id: number) =>
+    fetchMovieAndCharacters(id).then(result => {
+      setMovieAndCharacters(result);
+      setLoading(false);
+    });
 
   return (
     <section className='movies-list'>
-      <MoviesSelection moviesList={movies} />
-
-      <div className='movies-list__empty'>
-        <img className='movies-list__empty-img' src={logo} alt='Star Wars' />
-      </div>
+      <MoviesSelection
+        mc={setMovieAndCharacters}
+        isLoading={setLoading}
+        fetchMovie={handleFetchMovie}
+        moviesList={movies}
+      />
+      {!loading && movieAndCharacters.movie.episode_id && <Table movieCharacterInfo={movieAndCharacters} />}
+      {!loading && !movieAndCharacters.movie.episode_id && <Default />}
+      {loading && !movieAndCharacters.movie.episode_id && <MovieSpinner />}
     </section>
   );
 };

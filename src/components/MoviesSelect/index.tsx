@@ -3,19 +3,22 @@ import React from 'react';
 // Models
 import { Prop } from '../../models';
 
-// Utils
-import { dump } from '../../utils/dump';
-
 import './style.scss';
 
-const MoviesSelection: React.FC<Prop> = ({ moviesList }) => {
+const MoviesSelection: React.FC<Prop> = ({ moviesList, fetchMovie, isLoading, mc }) => {
+  const fetchSelectedMovie = (movieId: number) => {
+    fetchMovie!(movieId);
+    isLoading!(true);
+    mc!({ movie: {}, characters: [] });
+  };
+
   return (
     <div className='movies-list__menu'>
       <select
         className='movies-list__select'
         defaultValue='default'
         disabled={!moviesList!.length}
-        onChange={e => dump('Selected value:', e.currentTarget.value)}
+        onChange={evt => fetchSelectedMovie(+evt.currentTarget.value)}
       >
         <option value='default' disabled>
           {moviesList!.length ? 'Select a movie' : 'Loading movies, please wait'}
@@ -27,7 +30,7 @@ const MoviesSelection: React.FC<Prop> = ({ moviesList }) => {
         ))}
       </select>
       {!moviesList!.length ? (
-        <div className='movies-list__spinner'></div>
+        <div className='movies-list__spinner spinner'></div>
       ) : (
         <div className='movies-list__icon'>
           <svg focusable='false' viewBox='0 0 104 128' width='25' height='35' className='icon'>

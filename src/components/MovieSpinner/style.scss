@@ -1,0 +1,19 @@
+.movies-list {
+  &__loader {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__loader-icon.spinner {
+    display: block;
+    height: 50px;
+    width: 50px;
+    border-bottom-color: #fff;
+    border-left-color: #fff;
+  }
+
+  &__loader-text {
+    font-size: 14px;
+  }
+}
