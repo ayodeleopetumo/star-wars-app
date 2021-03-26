@@ -7,16 +7,42 @@
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
   }
 
+  &__table-sorter {
+    height: 45px;
+    width: 100px;
+    background: none;
+    border: none;
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+    text-align: left;
+  }
+
   &__table-header-row {
     background-color: #00203f;
     color: #ffffff;
     text-align: left;
-    cursor: pointer;
   }
 
-  &__table-heading,
+  &__table-heading {
+    padding: 0 10px;
+  }
+
   &__table-content {
     padding: 12px 15px;
+  }
+
+  &__table-content img {
+    width: 35px;
+  }
+
+  &__table-sorter-icon img {
+    margin-bottom: -3px;
+    transition: 0.5s;
+  }
+
+  &__table-sorter-icon.rotate img {
+    transform: rotate(180deg);
   }
 
   &__table-row {

@@ -18,7 +18,8 @@ const MoviesList: React.FC<Prop> = () => {
   const [loading, setLoading] = useState(false);
   const [movies, setMovies] = useState<Film[]>([]);
   const [movieAndCharacters, setMovieAndCharacters] = useState<MovieCharacter>({ movie: {}, characters: [] });
-  const [filterText, setfilterText] = useState('all');
+  const [filterText, setFilterText] = useState('all');
+  const [sortConfig, setSortConfig] = useState(null);
 
   useEffect(() => {
     fetchMovies()
@@ -41,7 +42,7 @@ const MoviesList: React.FC<Prop> = () => {
         moviesList={movies}
       />
       {!loading && movieAndCharacters.movie.episode_id && (
-        <Table filterTableData={setfilterText} filterText={filterText} movieCharacterInfo={movieAndCharacters} />
+        <Table sortConfig={ sortConfig } sortTableDate={ setSortConfig } filterTableData={setFilterText} filterText={filterText} movieCharacterInfo={movieAndCharacters} />
       )}
       {!loading && !movieAndCharacters.movie.episode_id && <Default />}
       {loading && !movieAndCharacters.movie.episode_id && <MovieSpinner />}
