@@ -6,7 +6,7 @@ import { dump } from './dump';
 
 export const fetchMovies = async (): Promise<Film[]> => {
   try {
-    const response = await fetch('http://anyorigin.com/go?url=https://swapi.dev/api/films');
+    const response = await fetch('https://swapi.dev/api/films');
     const movies = await response.json();
     const sortedMovies: Film[] = movies.results.sort((filmItemA: Film, filmItemB: Film) => {
       const filmItemADate = filmItemA?.release_date!;
@@ -26,7 +26,7 @@ export const fetchMovies = async (): Promise<Film[]> => {
 
 export const fetchMovieAndCharacters = async (id: number): Promise<MovieCharacter> => {
   try {
-    const response = await fetch(`http://anyorigin.com/go?url=https://swapi.dev/api/films/${id}`);
+    const response = await fetch(`https://swapi.dev/api/films/${id}`);
     const movie: Film = await response.json();
     const characters: People[] = await fetchCharacters(movie.characters as string[]);
     dump('Movie', { movie, characters });
