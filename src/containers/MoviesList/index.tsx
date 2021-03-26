@@ -42,7 +42,13 @@ const MoviesList: React.FC<Prop> = () => {
         moviesList={movies}
       />
       {!loading && movieAndCharacters.movie.episode_id && (
-        <Table sortConfig={ sortConfig } sortTableDate={ setSortConfig } filterTableData={setFilterText} filterText={filterText} movieCharacterInfo={movieAndCharacters} />
+        <Table
+          sortConfig={sortConfig}
+          sortTableDate={setSortConfig}
+          filterTableData={setFilterText}
+          filterText={filterText}
+          movieCharacterInfo={movieAndCharacters}
+        />
       )}
       {!loading && !movieAndCharacters.movie.episode_id && <Default />}
       {loading && !movieAndCharacters.movie.episode_id && <MovieSpinner />}

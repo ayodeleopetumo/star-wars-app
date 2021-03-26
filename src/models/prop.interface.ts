@@ -9,6 +9,6 @@ export interface Prop {
   movieCharacterInfo?: MovieCharacter;
   filterTableData?: Function;
   filterText?: string;
-  sortConfig?: { key: string, direction: string} | null;
-  sortTableDate?: Function
+  sortConfig?: { key: string; direction: string } | null;
+  sortTableDate?: Function;
 }

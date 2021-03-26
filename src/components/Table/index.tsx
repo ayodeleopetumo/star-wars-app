@@ -26,7 +26,7 @@ const Table: React.FC<Prop> = ({ movieCharacterInfo, filterTableData, filterText
     if (itemOne > itemTwo) return sortConfig?.direction === 'asc' ? 1 : -1;
 
     return 0;
-  }
+  };
 
   const characters = movieCharacterInfo?.characters
     .filter(character => {
@@ -63,19 +63,19 @@ const Table: React.FC<Prop> = ({ movieCharacterInfo, filterTableData, filterText
   };
 
   const getCharacterImage = (gender: string) => {
-    if (gender === 'male') return male
-    if (gender === 'female') return female
-    if (gender === 'n/a') return robot
-    if (gender === 'hermaphrodite') return hermaphrodite
-  }
+    if (gender === 'male') return male;
+    if (gender === 'female') return female;
+    if (gender === 'n/a') return robot;
+    if (gender === 'hermaphrodite') return hermaphrodite;
+  };
 
   const sortTableDataBy = (key: string) => {
     let direction = 'asc';
 
     if (sortConfig?.key === key && sortConfig.direction === 'asc') direction = 'dsc';
-    console.log({key, direction})
-    sortTableDate!({key, direction});
-  }
+    console.log({ key, direction });
+    sortTableDate!({ key, direction });
+  };
 
   return (
     <div className='movie-list__movie-character-info'>
@@ -95,22 +95,46 @@ const Table: React.FC<Prop> = ({ movieCharacterInfo, filterTableData, filterText
         <thead className='movies-list__table-header'>
           <tr className='movies-list__table-header-row'>
             <th className='movies-list__table-heading'>
-              <button className='movies-list__table-sorter' type="button" onClick={() => sortTableDataBy('name')}>
+              <button className='movies-list__table-sorter' type='button' onClick={() => sortTableDataBy('name')}>
                 Name
               </button>
-              { sortConfig?.key === 'name' && (<span className={`movies-list__table-sorter-icon ${sortConfig.direction === 'dsc' && sortConfig.key === 'name' ?'rotate' : ''}`}><img src={arrow} alt=''/></span>) }
+              {sortConfig?.key === 'name' && (
+                <span
+                  className={`movies-list__table-sorter-icon ${
+                    sortConfig.direction === 'dsc' && sortConfig.key === 'name' ? 'rotate' : ''
+                  }`}
+                >
+                  <img src={arrow} alt='' />
+                </span>
+              )}
             </th>
             <th className='movies-list__table-heading'>
-              <button className='movies-list__table-sorter' type="button" onClick={() => sortTableDataBy('gender')}>
+              <button className='movies-list__table-sorter' type='button' onClick={() => sortTableDataBy('gender')}>
                 Gender
               </button>
-              { sortConfig?.key === 'gender' && (<span className={`movies-list__table-sorter-icon ${sortConfig?.direction === 'dsc' && sortConfig?.key === 'gender' ?'rotate' : ''}`}><img src={arrow} alt=''/></span>) }
+              {sortConfig?.key === 'gender' && (
+                <span
+                  className={`movies-list__table-sorter-icon ${
+                    sortConfig?.direction === 'dsc' && sortConfig?.key === 'gender' ? 'rotate' : ''
+                  }`}
+                >
+                  <img src={arrow} alt='' />
+                </span>
+              )}
             </th>
             <th className='movies-list__table-heading'>
-              <button className='movies-list__table-sorter' type="button" onClick={() => sortTableDataBy('height')}>
+              <button className='movies-list__table-sorter' type='button' onClick={() => sortTableDataBy('height')}>
                 Height
               </button>
-              { sortConfig?.key === 'height' && (<span className={`movies-list__table-sorter-icon ${sortConfig?.direction === 'dsc' && sortConfig?.key === 'height' ? 'rotate' : '' }`}><img src={arrow} alt=''/></span>) }
+              {sortConfig?.key === 'height' && (
+                <span
+                  className={`movies-list__table-sorter-icon ${
+                    sortConfig?.direction === 'dsc' && sortConfig?.key === 'height' ? 'rotate' : ''
+                  }`}
+                >
+                  <img src={arrow} alt='' />
+                </span>
+              )}
             </th>
           </tr>
         </thead>
