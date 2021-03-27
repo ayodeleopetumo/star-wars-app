@@ -5,11 +5,11 @@ import { Prop } from '../../models';
 
 import './style.scss';
 
-const MoviesSelection: React.FC<Prop> = ({ moviesList, fetchMovie, isLoading, mc }) => {
+const MoviesSelection: React.FC<Prop> = ({ moviesList, fetchMovie, isLoading, movieCharacters }) => {
   const fetchSelectedMovie = (movieId: number) => {
     fetchMovie!(movieId);
     isLoading!(true);
-    mc!({ movie: {}, characters: [] });
+    movieCharacters!({ movie: {}, characters: [] });
   };
 
   return (

@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import Table from '../../components/Table';
 import Default from '../../components/Default';
 import MovieSpinner from '../../components/MovieSpinner';
-import MoviesSelection from '../../components/MoviesSelect';
+import MoviesSelection from '../../components/MoviesSelection';
 
 // Model
 import { Film, Prop, MovieCharacter } from '../../models';
@@ -22,21 +22,21 @@ const MoviesList: React.FC<Prop> = () => {
   const [sortConfig, setSortConfig] = useState(null);
 
   useEffect(() => {
-    fetchMovies()
-      .then(results => setMovies(results))
-      .catch(e => alert(e));
+    fetchMovies().then(results => setMovies(results))
   }, []);
 
   const handleFetchMovie = (id: number) =>
     fetchMovieAndCharacters(id).then(result => {
       setMovieAndCharacters(result);
+      setFilterText('all');
+      setSortConfig(null);
       setLoading(false);
     });
 
   return (
     <section className='movies-list'>
       <MoviesSelection
-        mc={setMovieAndCharacters}
+        movieCharacters={setMovieAndCharacters}
         isLoading={setLoading}
         fetchMovie={handleFetchMovie}
         moviesList={movies}
@@ -44,7 +44,7 @@ const MoviesList: React.FC<Prop> = () => {
       {!loading && movieAndCharacters.movie.episode_id && (
         <Table
           sortConfig={sortConfig}
-          sortTableDate={setSortConfig}
+          sortTableData={setSortConfig}
           filterTableData={setFilterText}
           filterText={filterText}
           movieCharacterInfo={movieAndCharacters}

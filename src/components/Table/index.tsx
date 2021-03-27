@@ -1,47 +1,40 @@
 import React from 'react';
 
 // Models
-import { People, Prop, Gender } from '../../models';
+import { Prop, GenderList } from '../../models';
 
 import './style.scss';
 
-// Icons
-import male from '../../assets/images/male.png';
-import female from '../../assets/images/female.png';
-import robot from '../../assets/images/robot.png';
-import hermaphrodite from '../../assets/images/hermaphrodite.png';
+// Icon
 import arrow from '../../assets/images/arrow.png';
 
-const Table: React.FC<Prop> = ({ movieCharacterInfo, filterTableData, filterText, sortConfig, sortTableDate }) => {
-  const selectGenderConstants = [
-    { value: Gender.ALL, label: 'All' },
-    { value: Gender.MALE, label: 'Male' },
-    { value: Gender.FEMALE, label: 'Female' },
-    { value: Gender.HERMAPHRODITE, label: 'Hermaphrodite' },
-    { value: Gender.NONHUMAN, label: 'Non Human' }
-  ];
+// Utils
+import {
+  getGenderImage,
+  characterFilter,
+  characterSorter,
+  genderFilter,
+  getCharacterCount,
+  getTotalHieght,
+  sortTableDataBy
+} from '../../utils/table';
 
-  const sortOrder = (itemOne: number | string, itemTwo: number | string) => {
-    if (itemOne < itemTwo) return sortConfig?.direction === 'asc' ? -1 : 1;
-    if (itemOne > itemTwo) return sortConfig?.direction === 'asc' ? 1 : -1;
-
-    return 0;
-  };
-
-  const characters = movieCharacterInfo?.characters
-    .filter(character => {
-      if (filterText === 'all') return character;
-      if (filterText === 'none') return character.gender.includes('n');
-
-      return character.gender === filterText;
-    })
-    .sort((a, b) => {
-      const key: keyof People = sortConfig!?.key as any;
-
-      if (key === 'height') return sortOrder(+a[key], +b[key]);
-      else return sortOrder(a[key], b[key]);
-    });
+const Table: React.FC<Prop> = ({ movieCharacterInfo, filterTableData, filterText, sortConfig, sortTableData }) => {
+  const nameSortConfig = sortTableDataBy('name', sortConfig!);
+  const genderSortConfig = sortTableDataBy('gender', sortConfig!);
+  const heightSortConfig = sortTableDataBy('height', sortConfig!);
   const movieInfo = movieCharacterInfo?.movie!;
+  const characters = movieCharacterInfo?.characters
+    .filter(character => characterFilter(character, filterText!))
+    .sort((a, b) => characterSorter(a, b, sortConfig!));
+
+  const selectGenderConstants = [
+    { value: GenderList.ALL, label: 'All' },
+    { value: GenderList.MALE, label: 'Male' },
+    { value: GenderList.FEMALE, label: 'Female' },
+    { value: GenderList.HERMAPHRODITE, label: 'Hermaphrodite' },
+    { value: GenderList.NONHUMAN, label: 'Non Human' }
+  ];
 
   const createMarkup = () => {
     return {
@@ -49,40 +42,15 @@ const Table: React.FC<Prop> = ({ movieCharacterInfo, filterTableData, filterText
     };
   };
 
-  const genderFilter = (gender: string) => filterTableData!(gender);
-  const getCharacterCount = (characters: People[]): number => characters.length;
-  const getTotalHieght = (characters: People[]): string => {
-    const heightInCentimeters = characters
-      .filter(character => !isNaN(+character.height))
-      .reduce((acc, curr) => acc + +curr.height, 0);
-    const heightInInches = heightInCentimeters / 2.54;
-    const heightInFeet = Math.floor(heightInInches / 12);
-    const finalInches = (heightInInches - 12 * heightInFeet).toFixed(2);
-
-    return `${heightInCentimeters} cm (${heightInFeet}ft/${finalInches}in)`;
-  };
-
-  const getCharacterImage = (gender: string) => {
-    if (gender === 'male') return male;
-    if (gender === 'female') return female;
-    if (gender === 'n/a') return robot;
-    if (gender === 'hermaphrodite') return hermaphrodite;
-  };
-
-  const sortTableDataBy = (key: string) => {
-    let direction = 'asc';
-
-    if (sortConfig?.key === key && sortConfig.direction === 'asc') direction = 'dsc';
-    console.log({ key, direction });
-    sortTableDate!({ key, direction });
-  };
-
   return (
     <div className='movie-list__movie-character-info'>
       <div dangerouslySetInnerHTML={createMarkup()} className='movies-list__opening-crawl'></div>
 
       <div className='movies-list__gender-filter'>
-        <select className='movies-list__gender-filter-select' onChange={evt => genderFilter(evt.currentTarget.value)}>
+        <select
+          className='movies-list__gender-filter-select'
+          onChange={evt => filterTableData!(genderFilter(evt.currentTarget.value))}
+        >
           {selectGenderConstants.map((gender, index) => (
             <option key={index} value={gender.value}>
               {gender.label}
@@ -95,7 +63,11 @@ const Table: React.FC<Prop> = ({ movieCharacterInfo, filterTableData, filterText
         <thead className='movies-list__table-header'>
           <tr className='movies-list__table-header-row'>
             <th className='movies-list__table-heading'>
-              <button className='movies-list__table-sorter' type='button' onClick={() => sortTableDataBy('name')}>
+              <button
+                className='movies-list__table-sorter'
+                type='button'
+                onClick={() => sortTableData!(nameSortConfig)}
+              >
                 Name
               </button>
               {sortConfig?.key === 'name' && (
@@ -109,7 +81,11 @@ const Table: React.FC<Prop> = ({ movieCharacterInfo, filterTableData, filterText
               )}
             </th>
             <th className='movies-list__table-heading'>
-              <button className='movies-list__table-sorter' type='button' onClick={() => sortTableDataBy('gender')}>
+              <button
+                className='movies-list__table-sorter'
+                type='button'
+                onClick={() => sortTableData!(genderSortConfig)}
+              >
                 Gender
               </button>
               {sortConfig?.key === 'gender' && (
@@ -123,7 +99,11 @@ const Table: React.FC<Prop> = ({ movieCharacterInfo, filterTableData, filterText
               )}
             </th>
             <th className='movies-list__table-heading'>
-              <button className='movies-list__table-sorter' type='button' onClick={() => sortTableDataBy('height')}>
+              <button
+                className='movies-list__table-sorter'
+                type='button'
+                onClick={() => sortTableData!(heightSortConfig)}
+              >
                 Height
               </button>
               {sortConfig?.key === 'height' && (
@@ -143,7 +123,7 @@ const Table: React.FC<Prop> = ({ movieCharacterInfo, filterTableData, filterText
             <tr className='movies-list__table-row' key={index}>
               <td className='movies-list__table-content'>{character.name}</td>
               <td className='movies-list__table-content'>
-                <img title={character.gender} src={getCharacterImage(character.gender)} alt={character.gender} />
+                <img title={character.gender} src={getGenderImage(character.gender)} alt={character.gender} />
               </td>
               <td className='movies-list__table-content'>{character.height}</td>
             </tr>

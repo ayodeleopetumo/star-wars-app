@@ -14,7 +14,7 @@ const App: React.FC<Prop> = () => {
   return (
     <div className='container'>
       <Header />
-      <MoviesList moviesList={[]} />
+      <MoviesList />
       <Footer />
     </div>
   );

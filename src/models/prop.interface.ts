@@ -5,10 +5,10 @@ export interface Prop {
   moviesList?: Film[];
   fetchMovie?: Function;
   isLoading?: Function;
-  mc?: Function;
+  movieCharacters?: Function;
   movieCharacterInfo?: MovieCharacter;
   filterTableData?: Function;
   filterText?: string;
   sortConfig?: { key: string; direction: string } | null;
-  sortTableDate?: Function;
+  sortTableData?: Function;
 }
