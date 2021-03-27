@@ -3,7 +3,7 @@
 */
 
 // Models
-import { People } from "../../models";
+import { People } from '../../models';
 
 // Icons
 import male from '../../assets/images/male.png';
@@ -72,7 +72,7 @@ export const characterSorter = (itemOne: People, itemTwo: People, sortConfig: so
 
   if (key === 'height') return sortOrder(+itemOne[key], +itemTwo[key], sortConfig!);
   else return sortOrder(itemOne[key], itemTwo[key], sortConfig!);
-}
+};
 
 /**
  * Returns a predicate (true || false) or a list of people that match a certain filter
@@ -85,7 +85,7 @@ export const characterFilter = (character: People, filterText: string): boolean 
   if (filterText === 'none') return character.gender.includes('n');
 
   return character.gender === filterText;
-}
+};
 
 /**
  * Compares and returns the sort order for a set of items
@@ -94,7 +94,7 @@ export const characterFilter = (character: People, filterText: string): boolean 
  * @param {sortConfig} config
  * @returns {number}
  */
-export const sortOrder = (itemOne: item, itemTwo: item, config: sortConfig) : sortReturn => {
+export const sortOrder = (itemOne: item, itemTwo: item, config: sortConfig): sortReturn => {
   if (itemOne < itemTwo) return config?.direction === 'asc' ? -1 : 1;
   if (itemOne > itemTwo) return config?.direction === 'asc' ? 1 : -1;
 

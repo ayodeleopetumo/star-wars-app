@@ -22,7 +22,7 @@ const MoviesList: React.FC<Prop> = () => {
   const [sortConfig, setSortConfig] = useState(null);
 
   useEffect(() => {
-    fetchMovies().then(results => setMovies(results))
+    fetchMovies().then(results => setMovies(results));
   }, []);
 
   const handleFetchMovie = (id: number) =>
