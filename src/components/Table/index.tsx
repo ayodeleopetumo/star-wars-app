@@ -1,7 +1,7 @@
 import React from 'react';
 
 // Models
-import { People, Prop } from '../../models';
+import { People, Prop, Gender } from '../../models';
 
 import './style.scss';
 
@@ -14,11 +14,11 @@ import arrow from '../../assets/images/arrow.png';
 
 const Table: React.FC<Prop> = ({ movieCharacterInfo, filterTableData, filterText, sortConfig, sortTableDate }) => {
   const selectGenderConstants = [
-    { value: 'all', label: 'All' },
-    { value: 'male', label: 'Male' },
-    { value: 'female', label: 'Female' },
-    { value: 'hermaphrodite', label: 'Hermaphrodite' },
-    { value: 'none', label: 'Non Human' }
+    { value: Gender.ALL, label: 'All' },
+    { value: Gender.MALE, label: 'Male' },
+    { value: Gender.FEMALE, label: 'Female' },
+    { value: Gender.HERMAPHRODITE, label: 'Hermaphrodite' },
+    { value: Gender.NONHUMAN, label: 'Non Human' }
   ];
 
   const sortOrder = (itemOne: number | string, itemTwo: number | string) => {
