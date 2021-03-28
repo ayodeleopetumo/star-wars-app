@@ -3,8 +3,8 @@ import React, { useState } from 'react';
 // Components
 import Table from '../../components/Table';
 import DefaultView from '../../components/DefaultView';
-import MovieSpinner from '../../components/MovieSpinner';
-import MoviesSelection from '../../components/MoviesSelection';
+import Loader from '../../components/Loader';
+import Dropdown from '../../components/Dropdown';
 
 // Model
 import { Props, MovieCharacter } from '../../models';
@@ -14,7 +14,7 @@ import { fetchMovieAndCharacters } from '../../utils/swapi';
 
 import './style.scss';
 
-const MoviesList: React.FC<Props> = ({ moviesList, setError }) => {
+const Movies: React.FC<Props> = ({ moviesList, setError }) => {
   const [loading, setLoading] = useState(false);
   const [movieAndCharacters, setMovieAndCharacters] = useState<MovieCharacter>({ movie: {}, characters: [] });
   const [filterText, setFilterText] = useState('all');
@@ -32,7 +32,7 @@ const MoviesList: React.FC<Props> = ({ moviesList, setError }) => {
 
   return (
     <section className='movies-list'>
-      <MoviesSelection
+      <Dropdown
         movieCharacters={setMovieAndCharacters}
         isLoading={setLoading}
         fetchMovie={handleFetchMovie}
@@ -48,9 +48,9 @@ const MoviesList: React.FC<Props> = ({ moviesList, setError }) => {
         />
       )}
       {!loading && !movieAndCharacters.movie.episode_id && <DefaultView />}
-      {loading && !movieAndCharacters.movie.episode_id && <MovieSpinner />}
+      {loading && !movieAndCharacters.movie.episode_id && <Loader />}
     </section>
   );
 };
 
-export default MoviesList;
+export default Movies;

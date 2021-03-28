@@ -5,7 +5,7 @@ import './App.css';
 // Components
 import Header from './components/Header';
 import Footer from './components/Footer';
-import MoviesList from './containers/MoviesList';
+import Movies from './containers/Movies';
 import Error from './components/Error';
 
 // Models
@@ -27,7 +27,7 @@ const App: React.FC<Props> = () => {
   return (
     <div className='container'>
       <Header />
-      {appError ? <Error /> : <MoviesList moviesList={movies} setError={setAppError} />}
+      {appError ? <Error /> : <Movies moviesList={movies} setError={setAppError} />}
       <Footer />
     </div>
   );

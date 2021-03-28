@@ -5,7 +5,7 @@ import { Props } from '../../models';
 
 import './style.scss';
 
-const MoviesSelection: React.FC<Props> = ({ moviesList, fetchMovie, isLoading, movieCharacters }) => {
+const Dropdown: React.FC<Props> = ({ moviesList, fetchMovie, isLoading, movieCharacters }) => {
   const fetchSelectedMovie = (movieId: number) => {
     fetchMovie!(movieId);
     isLoading!(true);
@@ -42,4 +42,4 @@ const MoviesSelection: React.FC<Props> = ({ moviesList, fetchMovie, isLoading, m
   );
 };
 
-export default MoviesSelection;
+export default Dropdown;
