@@ -1,6 +1,10 @@
+[![Netlify Status](https://api.netlify.com/api/v1/badges/5c7f1a4b-cc10-4ce0-a483-b4e6ddee47c5/deploy-status)](https://app.netlify.com/sites/kind-brattain-fb53a9/deploys)
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+## Online Demo
+[kind-brattain-fb53a9.netlify.app](kind-brattain-fb53a9.netlify.app)
 
 ## Available Scripts
 
