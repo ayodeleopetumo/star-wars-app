@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
 // Components
 import Table from '../../components/Table';
@@ -7,23 +7,18 @@ import MovieSpinner from '../../components/MovieSpinner';
 import MoviesSelection from '../../components/MoviesSelection';
 
 // Model
-import { Film, Prop, MovieCharacter } from '../../models';
+import {Props, MovieCharacter } from '../../models';
 
 // Utils
-import { fetchMovies, fetchMovieAndCharacters } from '../../utils/swapi';
+import { fetchMovieAndCharacters } from '../../utils/swapi';
 
 import './style.scss';
 
-const MoviesList: React.FC<Prop> = () => {
+const MoviesList: React.FC<Props> = ({moviesList, setError}) => {
   const [loading, setLoading] = useState(false);
-  const [movies, setMovies] = useState<Film[]>([]);
   const [movieAndCharacters, setMovieAndCharacters] = useState<MovieCharacter>({ movie: {}, characters: [] });
   const [filterText, setFilterText] = useState('all');
   const [sortConfig, setSortConfig] = useState(null);
-
-  useEffect(() => {
-    fetchMovies().then(results => setMovies(results));
-  }, []);
 
   const handleFetchMovie = (id: number) =>
     fetchMovieAndCharacters(id).then(result => {
@@ -31,7 +26,7 @@ const MoviesList: React.FC<Prop> = () => {
       setFilterText('all');
       setSortConfig(null);
       setLoading(false);
-    });
+    }).catch(err => setError!(err));
 
   return (
     <section className='movies-list'>
@@ -39,7 +34,7 @@ const MoviesList: React.FC<Prop> = () => {
         movieCharacters={setMovieAndCharacters}
         isLoading={setLoading}
         fetchMovie={handleFetchMovie}
-        moviesList={movies}
+        moviesList={moviesList}
       />
       {!loading && movieAndCharacters.movie.episode_id && (
         <Table

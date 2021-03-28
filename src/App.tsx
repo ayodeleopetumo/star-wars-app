@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 import './App.css';
 
@@ -6,15 +6,26 @@ import './App.css';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import MoviesList from './containers/MoviesList';
+import Error from './components/Error';
 
 // Models
-import { Prop } from './models';
+import { Film, Props } from './models';
 
-const App: React.FC<Prop> = () => {
+// API
+import { fetchMovies } from './utils/swapi';
+
+const App: React.FC<Props> = () => {
+  const [movies, setMovies] = useState<Film[]>([]);
+  const [appError, setAppError] = useState(false);
+
+  useEffect(() => {
+    fetchMovies().then(results => setMovies(results)).catch(err => err && setAppError(true));
+  }, []);
+
   return (
     <div className='container'>
       <Header />
-      <MoviesList />
+      {appError ? <Error /> : <MoviesList moviesList={movies} setError={setAppError} />}
       <Footer />
     </div>
   );
