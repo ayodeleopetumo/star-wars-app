@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 // Models
 import { Props } from '../../models';
@@ -8,8 +8,7 @@ import arrow from '../../assets/images/arrow.png';
 
 import { sortTableDataBy } from '../../utils/table';
 
-
-const TableHeader: React.FC<Props> = ({sortConfig, sortTableData}) => {
+const TableHeader: React.FC<Props> = ({ sortConfig, sortTableData }) => {
   const nameSortConfig = sortTableDataBy('name', sortConfig!);
   const genderSortConfig = sortTableDataBy('gender', sortConfig!);
   const heightSortConfig = sortTableDataBy('height', sortConfig!);
@@ -17,11 +16,7 @@ const TableHeader: React.FC<Props> = ({sortConfig, sortTableData}) => {
   return (
     <tr className='movies-list__table-header-row'>
       <th className='movies-list__table-heading'>
-        <button
-          className='movies-list__table-sorter'
-          type='button'
-          onClick={() => sortTableData!(nameSortConfig)}
-        >
+        <button className='movies-list__table-sorter' type='button' onClick={() => sortTableData!(nameSortConfig)}>
           Name
         </button>
         {sortConfig?.key === 'name' && (
@@ -35,11 +30,7 @@ const TableHeader: React.FC<Props> = ({sortConfig, sortTableData}) => {
         )}
       </th>
       <th className='movies-list__table-heading'>
-        <button
-          className='movies-list__table-sorter'
-          type='button'
-          onClick={() => sortTableData!(genderSortConfig)}
-        >
+        <button className='movies-list__table-sorter' type='button' onClick={() => sortTableData!(genderSortConfig)}>
           Gender
         </button>
         {sortConfig?.key === 'gender' && (
@@ -53,11 +44,7 @@ const TableHeader: React.FC<Props> = ({sortConfig, sortTableData}) => {
         )}
       </th>
       <th className='movies-list__table-heading'>
-        <button
-          className='movies-list__table-sorter'
-          type='button'
-          onClick={() => sortTableData!(heightSortConfig)}
-        >
+        <button className='movies-list__table-sorter' type='button' onClick={() => sortTableData!(heightSortConfig)}>
           Height
         </button>
         {sortConfig?.key === 'height' && (
@@ -71,7 +58,7 @@ const TableHeader: React.FC<Props> = ({sortConfig, sortTableData}) => {
         )}
       </th>
     </tr>
-  )
-}
+  );
+};
 
-export default TableHeader
+export default TableHeader;

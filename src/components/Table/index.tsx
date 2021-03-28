@@ -13,7 +13,6 @@ import './style.scss';
 import { characterFilter, characterSorter, genderFilter } from '../../utils/table';
 
 const Table: React.FC<Props> = ({ movieCharacterInfo, filterTableData, filterText, sortConfig, sortTableData }) => {
-
   const movieInfo = movieCharacterInfo?.movie!;
   const characters = movieCharacterInfo?.characters
     .filter(character => characterFilter(character, filterText!))

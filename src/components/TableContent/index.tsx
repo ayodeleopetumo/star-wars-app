@@ -1,11 +1,10 @@
-import React from 'react'
+import React from 'react';
 
-import { People, Props } from '../../models'
+import { People, Props } from '../../models';
 
-import { getCharacterCount, getGenderImage, getTotalHieght } from '../../utils/table'
+import { getCharacterCount, getGenderImage, getTotalHieght } from '../../utils/table';
 
-
-const TableContent: React.FC<Props> = ({characters}) => {
+const TableContent: React.FC<Props> = ({ characters }) => {
   return (
     <>
       {characters?.map((character: People, index: number) => (
@@ -27,11 +26,9 @@ const TableContent: React.FC<Props> = ({characters}) => {
         </td>
       </tr>
     </>
-  )
-}
+  );
+};
 
-TableContent.propTypes = {
+TableContent.propTypes = {};
 
-}
-
-export default TableContent
+export default TableContent;
