@@ -1,7 +1,7 @@
 import { Film } from './film.interface';
 import { MovieCharacter } from './moviecharacter.interface';
 
-export interface Prop {
+export interface Props {
   moviesList?: Film[];
   fetchMovie?: Function;
   isLoading?: Function;
@@ -11,4 +11,5 @@ export interface Prop {
   filterText?: string;
   sortConfig?: { key: string; direction: string } | null;
   sortTableData?: Function;
+  setError?: Function;
 }

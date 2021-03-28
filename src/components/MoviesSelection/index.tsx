@@ -1,11 +1,11 @@
 import React from 'react';
 
 // Models
-import { Prop } from '../../models';
+import { Props } from '../../models';
 
 import './style.scss';
 
-const MoviesSelection: React.FC<Prop> = ({ moviesList, fetchMovie, isLoading, movieCharacters }) => {
+const MoviesSelection: React.FC<Props> = ({ moviesList, fetchMovie, isLoading, movieCharacters }) => {
   const fetchSelectedMovie = (movieId: number) => {
     fetchMovie!(movieId);
     isLoading!(true);

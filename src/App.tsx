@@ -19,7 +19,9 @@ const App: React.FC<Props> = () => {
   const [appError, setAppError] = useState(false);
 
   useEffect(() => {
-    fetchMovies().then(results => setMovies(results)).catch(err => err && setAppError(true));
+    fetchMovies()
+      .then(results => setMovies(results))
+      .catch(err => err && setAppError(true));
   }, []);
 
   return (

@@ -7,26 +7,28 @@ import MovieSpinner from '../../components/MovieSpinner';
 import MoviesSelection from '../../components/MoviesSelection';
 
 // Model
-import {Props, MovieCharacter } from '../../models';
+import { Props, MovieCharacter } from '../../models';
 
 // Utils
 import { fetchMovieAndCharacters } from '../../utils/swapi';
 
 import './style.scss';
 
-const MoviesList: React.FC<Props> = ({moviesList, setError}) => {
+const MoviesList: React.FC<Props> = ({ moviesList, setError }) => {
   const [loading, setLoading] = useState(false);
   const [movieAndCharacters, setMovieAndCharacters] = useState<MovieCharacter>({ movie: {}, characters: [] });
   const [filterText, setFilterText] = useState('all');
   const [sortConfig, setSortConfig] = useState(null);
 
   const handleFetchMovie = (id: number) =>
-    fetchMovieAndCharacters(id).then(result => {
-      setMovieAndCharacters(result);
-      setFilterText('all');
-      setSortConfig(null);
-      setLoading(false);
-    }).catch(err => setError!(err));
+    fetchMovieAndCharacters(id)
+      .then(result => {
+        setMovieAndCharacters(result);
+        setFilterText('all');
+        setSortConfig(null);
+        setLoading(false);
+      })
+      .catch(err => setError!(err));
 
   return (
     <section className='movies-list'>

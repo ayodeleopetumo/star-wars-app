@@ -1,7 +1,7 @@
 import React from 'react';
 
 // Models
-import { Prop, GenderList } from '../../models';
+import { Props, GenderList } from '../../models';
 
 import './style.scss';
 
@@ -19,7 +19,7 @@ import {
   sortTableDataBy
 } from '../../utils/table';
 
-const Table: React.FC<Prop> = ({ movieCharacterInfo, filterTableData, filterText, sortConfig, sortTableData }) => {
+const Table: React.FC<Props> = ({ movieCharacterInfo, filterTableData, filterText, sortConfig, sortTableData }) => {
   const nameSortConfig = sortTableDataBy('name', sortConfig!);
   const genderSortConfig = sortTableDataBy('gender', sortConfig!);
   const heightSortConfig = sortTableDataBy('height', sortConfig!);
