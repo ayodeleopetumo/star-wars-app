@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 // Components
 import Table from '../../components/Table';
-import DefaultView from '../../components/Default';
+import DefaultView from '../../components/DefaultView';
 import MovieSpinner from '../../components/MovieSpinner';
 import MoviesSelection from '../../components/MoviesSelection';
 
