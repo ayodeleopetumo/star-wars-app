@@ -2,7 +2,7 @@ import React from 'react';
 
 import logo from '../../assets/images/logo-white.png';
 
-const Default: React.FC = () => {
+const DefaultView: React.FC = () => {
   return (
     <div className='movies-list__empty'>
       <img className='movies-list__empty-img' src={logo} alt='Star Wars' />
@@ -10,4 +10,4 @@ const Default: React.FC = () => {
   );
 };
 
-export default Default;
+export default DefaultView;

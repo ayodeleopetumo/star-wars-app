@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 // Components
 import Table from '../../components/Table';
-import Default from '../../components/Default';
+import DefaultView from '../../components/Default';
 import MovieSpinner from '../../components/MovieSpinner';
 import MoviesSelection from '../../components/MoviesSelection';
 
@@ -47,7 +47,7 @@ const MoviesList: React.FC<Props> = ({ moviesList, setError }) => {
           movieCharacterInfo={movieAndCharacters}
         />
       )}
-      {!loading && !movieAndCharacters.movie.episode_id && <Default />}
+      {!loading && !movieAndCharacters.movie.episode_id && <DefaultView />}
       {loading && !movieAndCharacters.movie.episode_id && <MovieSpinner />}
     </section>
   );
