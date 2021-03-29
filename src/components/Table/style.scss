@@ -51,14 +51,14 @@
 
   &__table-row:nth-of-type(even) {
     color: var(--main);
-    background-color: #66cdaa;
+    background-color: #b0c4de;
   }
 
   &__table-row:last-of-type {
     border-bottom: 2px solid #00203f;
   }
 
-  &__table-heading.active-heading {
+  &__table-heading.active-heading .movies-list__table-sorter {
     font-weight: bold;
     color: #009879;
   }

@@ -15,7 +15,7 @@ const TableHeader: React.FC<Props> = ({ sortConfig, sortTableData }) => {
 
   return (
     <tr className='movies-list__table-header-row'>
-      <th className='movies-list__table-heading'>
+      <th className={`movies-list__table-heading ${sortConfig?.key === 'name' ? 'active-heading' : ''}`}>
         <button className='movies-list__table-sorter' type='button' onClick={() => sortTableData!(nameSortConfig)}>
           Name
         </button>
@@ -29,7 +29,7 @@ const TableHeader: React.FC<Props> = ({ sortConfig, sortTableData }) => {
           </span>
         )}
       </th>
-      <th className='movies-list__table-heading'>
+      <th className={`movies-list__table-heading ${sortConfig?.key === 'gender' ? 'active-heading' : ''}`}>
         <button className='movies-list__table-sorter' type='button' onClick={() => sortTableData!(genderSortConfig)}>
           Gender
         </button>
@@ -43,7 +43,7 @@ const TableHeader: React.FC<Props> = ({ sortConfig, sortTableData }) => {
           </span>
         )}
       </th>
-      <th className='movies-list__table-heading'>
+      <th className={`movies-list__table-heading ${sortConfig?.key === 'height' ? 'active-heading' : ''}`}>
         <button className='movies-list__table-sorter' type='button' onClick={() => sortTableData!(heightSortConfig)}>
           Height
         </button>
