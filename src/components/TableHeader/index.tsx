@@ -13,6 +13,8 @@ const TableHeader: React.FC<Props> = ({ sortConfig, sortTableData }) => {
   const genderSortConfig = sortTableDataBy('gender', sortConfig!);
   const heightSortConfig = sortTableDataBy('height', sortConfig!);
 
+  const returnClass = (key: string) => sortConfig?.direction === 'dsc' && sortConfig?.key === key ? 'rotate' : '';
+
   return (
     <tr className='movies-list__table-header-row'>
       <th className={`movies-list__table-heading ${sortConfig?.key === 'name' ? 'active-heading' : ''}`}>
@@ -20,11 +22,7 @@ const TableHeader: React.FC<Props> = ({ sortConfig, sortTableData }) => {
           Name
         </button>
         {sortConfig?.key === 'name' && (
-          <span
-            className={`movies-list__table-sorter-icon ${
-              sortConfig.direction === 'dsc' && sortConfig.key === 'name' ? 'rotate' : ''
-            }`}
-          >
+          <span className={`movies-list__table-sorter-icon ${returnClass('name')}`}>
             <img src={arrow} alt='' />
           </span>
         )}
@@ -34,11 +32,7 @@ const TableHeader: React.FC<Props> = ({ sortConfig, sortTableData }) => {
           Gender
         </button>
         {sortConfig?.key === 'gender' && (
-          <span
-            className={`movies-list__table-sorter-icon ${
-              sortConfig?.direction === 'dsc' && sortConfig?.key === 'gender' ? 'rotate' : ''
-            }`}
-          >
+          <span className={`movies-list__table-sorter-icon ${returnClass('gender')}`}>
             <img src={arrow} alt='' />
           </span>
         )}
@@ -48,11 +42,7 @@ const TableHeader: React.FC<Props> = ({ sortConfig, sortTableData }) => {
           Height
         </button>
         {sortConfig?.key === 'height' && (
-          <span
-            className={`movies-list__table-sorter-icon ${
-              sortConfig?.direction === 'dsc' && sortConfig?.key === 'height' ? 'rotate' : ''
-            }`}
-          >
+          <span className={`movies-list__table-sorter-icon ${returnClass('height')}`}>
             <img src={arrow} alt='' />
           </span>
         )}
