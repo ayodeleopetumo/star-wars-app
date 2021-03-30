@@ -4,7 +4,7 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Online Demo
-[kind-brattain-fb53a9.netlify.app](kind-brattain-fb53a9.netlify.app)
+[View on Netlify](https://kind-brattain-fb53a9.netlify.app)
 
 ## Available Scripts
 
