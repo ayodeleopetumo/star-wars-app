@@ -13,7 +13,7 @@ const TableHeader: React.FC<Props> = ({ sortConfig, sortTableData }) => {
   const genderSortConfig = sortTableDataBy('gender', sortConfig!);
   const heightSortConfig = sortTableDataBy('height', sortConfig!);
 
-  const returnClass = (key: string) => sortConfig?.direction === 'dsc' && sortConfig?.key === key ? 'rotate' : '';
+  const returnClass = (key: string) => (sortConfig?.direction === 'dsc' && sortConfig?.key === key ? 'rotate' : '');
 
   return (
     <tr className='movies-list__table-header-row'>
