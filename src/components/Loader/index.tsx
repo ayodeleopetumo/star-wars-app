@@ -2,7 +2,7 @@ import React from 'react';
 
 import './style.scss';
 
-const MovieSpinner: React.FC = () => {
+const Loader: React.FC = () => {
   return (
     <div className='movies-list__loader'>
       <span className='movies-list__loader-icon spinner'></span>
@@ -11,4 +11,4 @@ const MovieSpinner: React.FC = () => {
   );
 };
 
-export default MovieSpinner;
+export default Loader;

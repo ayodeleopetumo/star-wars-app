@@ -7,7 +7,7 @@ const Header: React.FC = () => {
   return (
     <header className='header'>
       <img className='header__logo' src={logo} alt='Star Wars logo' height='44px' />
-      <h1 className='hedaer__title'>Movies</h1>
+      <h1 className='header__title'>Movies</h1>
     </header>
   );
 };
